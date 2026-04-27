@@ -1,0 +1,13 @@
+check_lp_feasibility    Quick Feasibility Check for an LP
+compare_lp_methods      Compare LP Solvers on the Same Problem
+interior_point          Solve an LP Using the Primal-Dual Interior
+                        Point Method
+lpSolveR                lpSolveR: Linear Programming Solvers in R
+lp_example              Example LP Dataset
+lp_to_standard_form     Convert a General LP to Standard Form
+plot_convergence        Plot Convergence of LP Solvers
+plot_lp_feasible_region
+                        Plot the Feasible Region of a 2-Variable LP
+simplex_method          Solve an LP Using the Simplex Method
+summarize_lp            Print a Human-Readable Summary of an LP Problem
+two_phase_simplex       Solve an LP Using the Two-Phase Simplex Method

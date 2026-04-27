@@ -1,0 +1,12 @@
+lpSolveR-package	lpSolveR
+check_lp_feasibility	check_lp_feasibility
+compare_lp_methods	compare_lp_methods
+interior_point	interior_point
+lpSolveR	lpSolveR
+lp_example	lp_example
+lp_to_standard_form	lp_to_standard_form
+plot_convergence	plot_convergence
+plot_lp_feasible_region	plot_lp_feasible_region
+simplex_method	simplex_method
+summarize_lp	summarize_lp
+two_phase_simplex	two_phase_simplex

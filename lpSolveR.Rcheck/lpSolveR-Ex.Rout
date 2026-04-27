@@ -1,0 +1,295 @@
+
+R version 4.5.2 (2025-10-31 ucrt) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "lpSolveR"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> library('lpSolveR')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("check_lp_feasibility")
+> ### * check_lp_feasibility
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: check_lp_feasibility
+> ### Title: Quick Feasibility Check for an LP
+> ### Aliases: check_lp_feasibility
+> 
+> ### ** Examples
+> 
+> A_ub <- matrix(c(1, 2, 1, 2, 1, 3, 1, 1, 1), nrow = 3, byrow = TRUE)
+> b_ub <- c(14, 14, 8)
+> check_lp_feasibility(A_ub, b_ub)
+$feasible
+[1] TRUE
+
+$message
+[1] "Problem is feasible: a basic feasible solution was found."
+
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("compare_lp_methods")
+> ### * compare_lp_methods
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: compare_lp_methods
+> ### Title: Compare LP Solvers on the Same Problem
+> ### Aliases: compare_lp_methods
+> 
+> ### ** Examples
+> 
+> obj  <- c(2, 3)
+> A_ub <- matrix(c(1, 1, 2, 1), nrow = 2, byrow = TRUE)
+> b_ub <- c(4, 6)
+> cmp  <- compare_lp_methods(obj, A_ub, b_ub)
+> cmp$summary_df
+          method    obj_value iterations runtime_sec  status
+1        simplex 0.000000e+00          0           0 optimal
+2      two_phase 0.000000e+00          1           0 optimal
+3 interior_point 5.804145e-09         17           0 optimal
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("interior_point")
+> ### * interior_point
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: interior_point
+> ### Title: Solve an LP Using the Primal-Dual Interior Point Method
+> ### Aliases: interior_point
+> 
+> ### ** Examples
+> 
+> obj  <- c(2, 3)
+> A_ub <- matrix(c(1, 1, 2, 1), nrow = 2, byrow = TRUE)
+> b_ub <- c(4, 6)
+> res  <- interior_point(obj, A_ub, b_ub)
+> res$obj_value
+[1] 5.804145e-09
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("lp_example")
+> ### * lp_example
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: lp_example
+> ### Title: Example LP Dataset
+> ### Aliases: lp_example
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(lp_example)
+> lp_example$obj
+[1] 2 3 1
+> lp_example$A_ub
+     [,1] [,2] [,3]
+[1,]    1    2    1
+[2,]    2    1    3
+[3,]    1    1    1
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("lp_to_standard_form")
+> ### * lp_to_standard_form
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: lp_to_standard_form
+> ### Title: Convert a General LP to Standard Form
+> ### Aliases: lp_to_standard_form
+> 
+> ### ** Examples
+> 
+> obj   <- c(2, 3)
+> A_ub  <- matrix(c(1, 1, 2, 1), nrow = 2, byrow = TRUE)
+> b_ub  <- c(4, 6)
+> sf    <- lp_to_standard_form(obj, A_ub, b_ub)
+> sf$A
+     [,1] [,2] [,3] [,4]
+[1,]    1    1    1    0
+[2,]    2    1    0    1
+> sf$variable_names
+[1] "x1" "x2" "s1" "s2"
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("plot_convergence")
+> ### * plot_convergence
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: plot_convergence
+> ### Title: Plot Convergence of LP Solvers
+> ### Aliases: plot_convergence
+> 
+> ### ** Examples
+> 
+> obj  <- c(2, 3)
+> A_ub <- matrix(c(1, 1, 2, 1), nrow = 2, byrow = TRUE)
+> b_ub <- c(4, 6)
+> cmp  <- compare_lp_methods(obj, A_ub, b_ub)
+> p    <- plot_convergence(cmp)
+> print(p)
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("plot_lp_feasible_region")
+> ### * plot_lp_feasible_region
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: plot_lp_feasible_region
+> ### Title: Plot the Feasible Region of a 2-Variable LP
+> ### Aliases: plot_lp_feasible_region
+> 
+> ### ** Examples
+> 
+> obj  <- c(2, 3)
+> A_ub <- matrix(c(1, 1, 2, 1), nrow = 2, byrow = TRUE)
+> b_ub <- c(4, 6)
+> p    <- plot_lp_feasible_region(obj, A_ub, b_ub)
+> print(p)
+Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :
+  conversion failure on 'x₁' in 'mbcsToSbcs': for ₁ (U+2081)
+Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :
+  conversion failure on 'x₂' in 'mbcsToSbcs': for ₂ (U+2082)
+Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :
+  conversion failure on 'min 2x₁ + 3x₂' in 'mbcsToSbcs': for ₁ (U+2081)
+Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :
+  conversion failure on 'min 2x₁ + 3x₂' in 'mbcsToSbcs': for ₂ (U+2082)
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("simplex_method")
+> ### * simplex_method
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: simplex_method
+> ### Title: Solve an LP Using the Simplex Method
+> ### Aliases: simplex_method
+> 
+> ### ** Examples
+> 
+> obj  <- c(2, 3)
+> A_ub <- matrix(c(1, 1, 2, 1), nrow = 2, byrow = TRUE)
+> b_ub <- c(4, 6)
+> res  <- simplex_method(obj, A_ub, b_ub)
+> res$obj_value
+[1] 0
+> res$solution
+[1] 0 0
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("summarize_lp")
+> ### * summarize_lp
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: summarize_lp
+> ### Title: Print a Human-Readable Summary of an LP Problem
+> ### Aliases: summarize_lp
+> 
+> ### ** Examples
+> 
+> obj  <- c(2, 3, 1)
+> A_ub <- matrix(c(1, 2, 1, 2, 1, 3, 1, 1, 1), nrow = 3, byrow = TRUE)
+> b_ub <- c(14, 14, 8)
+> summarize_lp(obj, A_ub, b_ub)
+=== LP Problem Summary ===
+Variables          : 3
+Inequality (<=)    : 3
+Equality           : 0
+Objective direction: MIN
+
+min  2x1 + 3x2 + x3
+subject to:
+  x1 + 2x2 + x3  <=  14
+  2x1 + x2 + 3x3  <=  14
+  x1 + x2 + x3  <=  8
+  x1 >= 0, x2 >= 0, x3 >= 0
+========================== 
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("two_phase_simplex")
+> ### * two_phase_simplex
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: two_phase_simplex
+> ### Title: Solve an LP Using the Two-Phase Simplex Method
+> ### Aliases: two_phase_simplex
+> 
+> ### ** Examples
+> 
+> obj  <- c(1, 2)
+> A_eq <- matrix(c(1, 1), nrow = 1)
+> b_eq <- 3
+> res  <- two_phase_simplex(obj, A_eq = A_eq, b_eq = b_eq)
+> res$obj_value
+[1] 3
+> 
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.72 0.08 0.82 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

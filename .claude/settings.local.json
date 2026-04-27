@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Rscript *)",
+      "Bash($RSCRIPT *)",
+      "Bash(cat)",
+      "Bash(\"/c/Program Files/R/R-4.5.2/bin/x64/Rscript.exe\" /tmp/make_data.R)"
+    ]
+  }
+}
