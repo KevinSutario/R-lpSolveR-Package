@@ -3,6 +3,7 @@
 export(check_lp_feasibility)
 export(compare_lp_methods)
 export(interior_point)
+export(lp_dual)
 export(lp_to_standard_form)
 export(plot_convergence)
 export(plot_lp_feasible_region)
